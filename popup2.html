@@ -221,10 +221,9 @@
 
     if (!company) { alert('상호를 입력해 주세요.'); document.getElementById('fCompany').focus(); return; }
     if (!contact) { alert('연락처를 입력해 주세요.'); document.getElementById('fContact').focus(); return; }
-
-    if (!SHEET_URL) {
-      alert('Apps Script URL이 설정되지 않았습니다.\n소스의 SHEET_URL 변수를 확인해 주세요.');
-      return;
+    if (!SHEET_URL || SHEET_URL.includes('docs.google.com')) {
+        alert('Apps Script 웹 앱 URL이 올바르게 설정되지 않았습니다.');
+        return;
     }
 
     const btn = document.getElementById('btnSubmit');
@@ -232,23 +231,31 @@
     btn.textContent = '저장 중...';
 
     try {
-      await fetch(SHEET_URL, {
-        method: 'POST',
-        mode: 'no-cors',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ datetime, company, contact })
-      });
-      document.getElementById('inquiryForm').style.display = 'none';
-      document.getElementById('resultSuccess').style.display = 'block';
+        // ★ mode: 'no-cors'를 제거하고 표준적인 URLSearchParams 형태로 전송하는 것이 에러가 없습니다.
+        const response = await fetch(SHEET_URL, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/x-www-form-urlencoded'
+            },
+            body: new URLSearchParams({
+                datetime: datetime,
+                company: company,
+                contact: contact
+            })
+        });
+
+        document.getElementById('inquiryForm').style.display = 'none';
+        document.getElementById('resultSuccess').style.display = 'block';
     } catch (err) {
-      document.getElementById('inquiryForm').style.display = 'none';
-      document.getElementById('resultError').style.display = 'block';
-      document.getElementById('errorMsg').textContent = '네트워크 오류가 발생했습니다. 잠시 후 다시 시도해 주세요.';
+        console.error(err);
+        document.getElementById('inquiryForm').style.display = 'none';
+        document.getElementById('resultError').style.display = 'block';
+        document.getElementById('errorMsg').textContent = '네트워크 오류가 발생했습니다. 잠시 후 다시 시도해 주세요.';
     } finally {
-      btn.disabled = false;
-      btn.textContent = '등록';
+        btn.disabled = false;
+        btn.textContent = '등록';
     }
-  }
+}
 
   // 오버레이 바깥 클릭 시 닫기
   document.getElementById('inquiryOverlay').addEventListener('click', function(e) {
