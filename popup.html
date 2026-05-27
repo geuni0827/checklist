@@ -1,0 +1,371 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>성공적인 워크숍을 위한 안심 체크리스트</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@latest/tabler-icons.min.css">
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            background: #ffffff;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+        }
+        .popup {
+            background: #ffffff;
+            width: 100%;
+            overflow: hidden;
+        }
+        .popup-header {
+            background: #1a3a5c;
+            padding: 1.5rem 1.75rem 1.25rem;
+            position: relative;
+        }
+        .popup-header .badge {
+            display: inline-block;
+            background: rgba(255,255,255,0.18);
+            color: #e0eeff;
+            font-size: 11px;
+            padding: 3px 10px;
+            border-radius: 20px;
+            margin-bottom: 8px;
+            letter-spacing: 0.03em;
+        }
+        .popup-header h2 {
+            color: #ffffff;
+            font-size: 18px;
+            font-weight: 500;
+            margin: 0 0 4px;
+        }
+        .popup-header p {
+            color: #a8c8f0;
+            font-size: 13px;
+            margin: 0;
+            line-height: 1.5;
+        }
+        .popup-header .close-btn {
+            position: absolute;
+            top: 14px;
+            right: 16px;
+            background: rgba(255,255,255,0.15);
+            border: none;
+            color: #fff;
+            width: 28px;
+            height: 28px;
+            border-radius: 50%;
+            cursor: pointer;
+            font-size: 16px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            line-height: 1;
+        }
+        .popup-body {
+            padding: 1.25rem 1.75rem 1rem;
+            max-height: 520px;
+            overflow-y: auto;
+        }
+        .section {
+            margin-bottom: 1.1rem;
+        }
+        .section-title {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 13px;
+            font-weight: 500;
+            color: #666666;
+            margin-bottom: 8px;
+            padding-bottom: 6px;
+            border-bottom: 0.5px solid #e0e0e0;
+        }
+        .section-title i {
+            font-size: 15px;
+            color: #1a3a5c;
+        }
+        .check-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 10px;
+            padding: 7px 10px;
+            border-radius: 6px;
+            margin-bottom: 4px;
+            transition: background 0.15s;
+            cursor: default;
+        }
+        .check-item:hover {
+            background: #f5f5f5;
+        }
+        .check-icon {
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            background: #e6f1fb;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+            margin-top: 1px;
+        }
+        .check-icon i {
+            font-size: 12px;
+            color: #185fa5;
+        }
+        .check-text {
+            flex: 1;
+        }
+        .check-label {
+            font-size: 13px;
+            font-weight: 500;
+            color: #333333;
+            margin-bottom: 1px;
+        }
+        .check-desc {
+            font-size: 12px;
+            color: #666666;
+            line-height: 1.5;
+        }
+        .yes-badge {
+            flex-shrink: 0;
+            background: #eaf3de;
+            color: #3b6d11;
+            font-size: 11px;
+            font-weight: 500;
+            padding: 2px 8px;
+            border-radius: 20px;
+            margin-top: 2px;
+        }
+        .popup-footer {
+            padding: 0.9rem 1.75rem 1.25rem;
+            border-top: 0.5px solid #e0e0e0;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 12px;
+            background: #ffffff;
+        }
+        .footer-promise {
+            font-size: 12px;
+            color: #666666;
+            line-height: 1.4;
+        }
+        .footer-promise strong {
+            color: #1a3a5c;
+            font-weight: 500;
+        }
+        .cta-btn {
+            background: #1a3a5c;
+            color: #fff;
+            border: none;
+            padding: 9px 20px;
+            border-radius: 6px;
+            font-size: 13px;
+            font-weight: 500;
+            cursor: pointer;
+            white-space: nowrap;
+            flex-shrink: 0;
+            transition: opacity 0.15s;
+        }
+        .cta-btn:hover {
+            opacity: 0.88;
+        }
+        .stats-row {
+            display: flex;
+            gap: 8px;
+            margin-bottom: 1rem;
+        }
+        .stat-card {
+            flex: 1;
+            background: #f5f5f5;
+            border-radius: 6px;
+            padding: 10px 12px;
+            text-align: center;
+        }
+        .stat-num {
+            font-size: 20px;
+            font-weight: 500;
+            color: #1a3a5c;
+        }
+        .stat-label {
+            font-size: 11px;
+            color: #666666;
+            margin-top: 2px;
+        }
+    </style>
+</head>
+<body>
+    <div class="popup">
+        <div class="popup-header">
+            <button class="close-btn" onclick="window.close()" type="button">
+                <i class="ti ti-x" aria-hidden="true"></i>
+            </button>
+            <div class="badge">26년 노하우 · 건설경영연수원</div>
+            <h2>성공적인 워크숍을 위한 안심 체크리스트</h2>
+            <p>담당자님의 고민, 저희가 모두 해결해 드립니다. 아래 모든 항목이 준비되어 있습니다.</p>
+        </div>
+        
+        <div class="popup-body">
+            <div class="stats-row">
+                <div class="stat-card">
+                    <div class="stat-num">14</div>
+                    <div class="stat-label">체크 항목 전부 충족</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-num">26년</div>
+                    <div class="stat-label">연수원 운영 경력</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-num">100%</div>
+                    <div class="stat-label">YES 달성</div>
+                </div>
+            </div>
+
+            <div class="section">
+                <div class="section-title"><i class="ti ti-file-description" aria-hidden="true"></i> 기획 및 행정</div>
+                <div class="check-item">
+                    <div class="check-icon"><i class="ti ti-check" aria-hidden="true"></i></div>
+                    <div class="check-text">
+                        <div class="check-label">행정 서류 패키지</div>
+                        <div class="check-desc">견적서·사업자등록증·통장사본 등 결재 서류 한 번에 제공</div>
+                    </div>
+                    <div class="yes-badge">YES</div>
+                </div>
+                <div class="check-item">
+                    <div class="check-icon"><i class="ti ti-check" aria-hidden="true"></i></div>
+                    <div class="check-text">
+                        <div class="check-label">공간 배치 최적화</div>
+                        <div class="check-desc">행사 성격에 맞춘 좌석 배치 시뮬레이션 사전 완료</div>
+                    </div>
+                    <div class="yes-badge">YES</div>
+                </div>
+                <div class="check-item">
+                    <div class="check-icon"><i class="ti ti-check" aria-hidden="true"></i></div>
+                    <div class="check-text">
+                        <div class="check-label">동선 시뮬레이션</div>
+                        <div class="check-desc">숙소-강의실-식당 이동 10분 이내 보장</div>
+                    </div>
+                    <div class="yes-badge">YES</div>
+                </div>
+            </div>
+
+            <div class="section">
+                <div class="section-title"><i class="ti ti-device-laptop" aria-hidden="true"></i> 테크 및 장비</div>
+                <div class="check-item">
+                    <div class="check-icon"><i class="ti ti-check" aria-hidden="true"></i></div>
+                    <div class="check-text">
+                        <div class="check-label">커넥터 호환성</div>
+                        <div class="check-desc">HDMI, USB-C 변환 젠더 전 강의실 완비</div>
+                    </div>
+                    <div class="yes-badge">YES</div>
+                </div>
+                <div class="check-item">
+                    <div class="check-icon"><i class="ti ti-check" aria-hidden="true"></i></div>
+                    <div class="check-text">
+                        <div class="check-label">네트워크 안정성</div>
+                        <div class="check-desc">고밀도 작업 시 별도 전용망 지원 가능</div>
+                    </div>
+                    <div class="yes-badge">YES</div>
+                </div>
+                <div class="check-item">
+                    <div class="check-icon"><i class="ti ti-check" aria-hidden="true"></i></div>
+                    <div class="check-text">
+                        <div class="check-label">실시간 기술 지원</div>
+                        <div class="check-desc">전문 인력 상주 — 장비 오류 즉시 해결</div>
+                    </div>
+                    <div class="yes-badge">YES</div>
+                </div>
+            </div>
+
+            <div class="section">
+                <div class="section-title"><i class="ti ti-coffee" aria-hidden="true"></i> 식사 및 리프레시</div>
+                <div class="check-item">
+                    <div class="check-icon"><i class="ti ti-check" aria-hidden="true"></i></div>
+                    <div class="check-text">
+                        <div class="check-label">메뉴 사전 확인</div>
+                        <div class="check-desc">표준 식단표 공유 — 구성 미리 검토 가능</div>
+                    </div>
+                    <div class="yes-badge">YES</div>
+                </div>
+                <div class="check-item">
+                    <div class="check-icon"><i class="ti ti-check" aria-hidden="true"></i></div>
+                    <div class="check-text">
+                        <div class="check-label">다과 상시 지원</div>
+                        <div class="check-desc">수업 중 커피·다과 끊김 없이 연수원 측 상시 관리</div>
+                    </div>
+                    <div class="yes-badge">YES</div>
+                </div>
+            </div>
+
+            <div class="section">
+                <div class="section-title"><i class="ti ti-shield-check" aria-hidden="true"></i> 현장 운영 및 안전</div>
+                <div class="check-item">
+                    <div class="check-icon"><i class="ti ti-check" aria-hidden="true"></i></div>
+                    <div class="check-text">
+                        <div class="check-label">안내 게시물·X배너</div>
+                        <div class="check-desc">입구부터 주요 동선 가독성 높은 안내판 설치</div>
+                    </div>
+                    <div class="yes-badge">YES</div>
+                </div>
+                <div class="check-item">
+                    <div class="check-icon"><i class="ti ti-check" aria-hidden="true"></i></div>
+                    <div class="check-text">
+                        <div class="check-label">비상 대응 체계</div>
+                        <div class="check-desc">구급함 위치 안내 및 인근 병원 연락망 완비</div>
+                    </div>
+                    <div class="yes-badge">YES</div>
+                </div>
+                <div class="check-item">
+                    <div class="check-icon"><i class="ti ti-check" aria-hidden="true"></i></div>
+                    <div class="check-text">
+                        <div class="check-label">현장 시설 점검</div>
+                        <div class="check-desc">마이크·조명 등 기본 시설 사용법 사전 안내</div>
+                    </div>
+                    <div class="yes-badge">YES</div>
+                </div>
+            </div>
+
+            <div class="section">
+                <div class="section-title"><i class="ti ti-receipt" aria-hidden="true"></i> 사후 정산 및 보고</div>
+                <div class="check-item">
+                    <div class="check-icon"><i class="ti ti-check" aria-hidden="true"></i></div>
+                    <div class="check-text">
+                        <div class="check-label">정산 증빙 지원</div>
+                        <div class="check-desc">거래명세서 등 법인 회계 기준 추가 증빙 제공</div>
+                    </div>
+                    <div class="yes-badge">YES</div>
+                </div>
+                <div class="check-item">
+                    <div class="check-icon"><i class="ti ti-check" aria-hidden="true"></i></div>
+                    <div class="check-text">
+                        <div class="check-label">만족도 조사 협조</div>
+                        <div class="check-desc">설문지 배부 등 종료 현장 협조 사항 완벽 지원</div>
+                    </div>
+                    <div class="yes-badge">YES</div>
+                </div>
+                <div class="check-item">
+                    <div class="check-icon"><i class="ti ti-check" aria-hidden="true"></i></div>
+                    <div class="check-text">
+                        <div class="check-label">유실물 공동 점검</div>
+                        <div class="check-desc">행사 종료 후 담당자·연수원 현장 공동 점검 프로세스 운영</div>
+                    </div>
+                    <div class="yes-badge">YES</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="popup-footer">
+            <div class="footer-promise">
+                <strong>건설경영연수원</strong>은 이 모든 항목을<br /> <strong>"YES"</strong>로 만들어 드립니다.
+            </div>
+            <button class="cta-btn" onclick="sendPrompt('연수원 견적 및 예약 문의를 도와줘')" type="button"> 견적 · 예약 문의 ↗ </button>
+        </div>
+    </div>
+
+    <script>
+        function sendPrompt(message) {
+            console.log(message);
+        }
+    </script>
+</body>
+</html>
